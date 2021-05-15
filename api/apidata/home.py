@@ -21,13 +21,13 @@ class Homepage:
         }
         self.teaser = {
             'appident1': {
-                'ident': 'appident1',
-                'name': '',
-                'platforms': ['proton'],
+                'ident': 'gnome-clocks',
+                'name': 'Gnome Clocks',
+                'platforms': ['debian'],
                 'description'
                 'categories': ['categoryid1', 'categoryid2'],
                 'images': {
-                    'banner': '',
+                    'banner': 'https://dashboard.snapcraft.io/site_media/appmedia/2017/07/org.gnome.clocks.png',
                     'thumb': '',
                     'zoom': '',
                     'screenshots': [],
@@ -37,13 +37,13 @@ class Homepage:
                 'external_rating': '',
             },
             'appident2': {
-                'ident': 'appident2',
-                'name': '',
+                'ident': '544730',
+                'name': 'Catan Universe',
                 'platforms': ['proton'],
                 'description'
                 'categories': ['categoryid1', 'categoryid2'],
                 'images': {
-                    'banner': '',
+                    'banner': 'https://steamcdn-a.akamaihd.net/steam/apps/544730/header.jpg',
                     'thumb': '',
                     'zoom': '',
                     'screenshots': [],
@@ -54,12 +54,12 @@ class Homepage:
             },
             'appident3': {
                 'ident': 'appident3',
-                'name': '',
+                'name': 'App3',
                 'platforms': ['proton'],
                 'description'
                 'categories': ['categoryid1', 'categoryid2'],
                 'images': {
-                    'banner': '',
+                    'banner': 'https://www.stuttgarter-nachrichten.de/media.media.5d6dcbb5-e13b-4d81-8b5b-e74d45f3d237.original1024.jpg',
                     'thumb': '',
                     'zoom': '',
                     'screenshots': [],
@@ -71,13 +71,13 @@ class Homepage:
         }
         self.featured = {
             'appident1': {
-                'ident': 'appident1',
-                'name': '',
-                'platforms': ['proton'],
+                'ident': 'gnome-clocks',
+                'name': 'Gnome Clocks',
+                'platforms': ['debian'],
                 'description'
                 'categories': ['categoryid1', 'categoryid2'],
                 'images': {
-                    'banner': '',
+                    'banner': 'https://dashboard.snapcraft.io/site_media/appmedia/2017/07/org.gnome.clocks.png',
                     'thumb': '',
                     'zoom': '',
                     'screenshots': [],
@@ -87,13 +87,13 @@ class Homepage:
                 'external_rating': '',
             },
             'appident2': {
-                'ident': 'appident2',
-                'name': '',
+                'ident': '544730',
+                'name': 'Catan Universe',
                 'platforms': ['proton'],
                 'description'
                 'categories': ['categoryid1', 'categoryid2'],
                 'images': {
-                    'banner': '',
+                    'banner': 'https://steamcdn-a.akamaihd.net/steam/apps/544730/header.jpg',
                     'thumb': '',
                     'zoom': '',
                     'screenshots': [],
@@ -104,12 +104,12 @@ class Homepage:
             },
             'appident3': {
                 'ident': 'appident3',
-                'name': '',
+                'name': 'App3',
                 'platforms': ['proton'],
                 'description'
                 'categories': ['categoryid1', 'categoryid2'],
                 'images': {
-                    'banner': '',
+                    'banner': 'https://www.stuttgarter-nachrichten.de/media.media.5d6dcbb5-e13b-4d81-8b5b-e74d45f3d237.original1024.jpg',
                     'thumb': '',
                     'zoom': '',
                     'screenshots': [],
