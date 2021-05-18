@@ -1,125 +1,15 @@
+from app.models import App, Category
+
+
 class Homepage:
     categories = None
     teaser = None
     featured = None
 
     def __init__(self):
-        """ Create dummy data """
-        self.categories = {
-            'categoryid1': {
-                'name': 'category1',
-                'image_banner': '',
-                'image_thumb': '',
-                'image_zoom': '',
-            },
-            'categoryid2': {
-                'name': 'category2',
-                'image_banner': '',
-                'image_thumb': '',
-                'image_zoom': '',
-            },
-        }
-        self.teaser = {
-            'appident1': {
-                'ident': 'gnome-clocks',
-                'name': 'Gnome Clocks',
-                'platforms': ['debian'],
-                'description'
-                'categories': ['categoryid1', 'categoryid2'],
-                'images': {
-                    'banner': 'https://dashboard.snapcraft.io/site_media/appmedia/2017/07/org.gnome.clocks.png',
-                    'thumb': '',
-                    'zoom': '',
-                    'screenshots': [],
-                },
-                'tags': ['tag1', 'tag2'],
-                'publisher': 'somePublisher',
-                'external_rating': '',
-            },
-            'appident2': {
-                'ident': '544730',
-                'name': 'Catan Universe',
-                'platforms': ['proton'],
-                'description'
-                'categories': ['categoryid1', 'categoryid2'],
-                'images': {
-                    'banner': 'https://steamcdn-a.akamaihd.net/steam/apps/544730/header.jpg',
-                    'thumb': '',
-                    'zoom': '',
-                    'screenshots': [],
-                },
-                'tags': ['tag1', 'tag2'],
-                'publisher': 'somePublisher',
-                'external_rating': '',
-            },
-            'appident3': {
-                'ident': 'appident3',
-                'name': 'App3',
-                'platforms': ['proton'],
-                'description'
-                'categories': ['categoryid1', 'categoryid2'],
-                'images': {
-                    'banner': 'https://www.stuttgarter-nachrichten.de/media.media.5d6dcbb5-e13b-4d81-8b5b-e74d45f3d237.original1024.jpg',
-                    'thumb': '',
-                    'zoom': '',
-                    'screenshots': [],
-                },
-                'tags': ['tag1', 'tag2'],
-                'publisher': 'somePublisher',
-                'external_rating': '',
-            },
-        }
-        self.featured = {
-            'appident1': {
-                'ident': 'gnome-clocks',
-                'name': 'Gnome Clocks',
-                'platforms': ['debian'],
-                'description'
-                'categories': ['categoryid1', 'categoryid2'],
-                'images': {
-                    'banner': 'https://dashboard.snapcraft.io/site_media/appmedia/2017/07/org.gnome.clocks.png',
-                    'thumb': '',
-                    'zoom': '',
-                    'screenshots': [],
-                },
-                'tags': ['tag1', 'tag2'],
-                'publisher': 'somePublisher',
-                'external_rating': '',
-            },
-            'appident2': {
-                'ident': '544730',
-                'name': 'Catan Universe',
-                'platforms': ['proton'],
-                'description'
-                'categories': ['categoryid1', 'categoryid2'],
-                'images': {
-                    'banner': 'https://steamcdn-a.akamaihd.net/steam/apps/544730/header.jpg',
-                    'thumb': '',
-                    'zoom': '',
-                    'screenshots': [],
-                },
-                'tags': ['tag1', 'tag2'],
-                'publisher': 'somePublisher',
-                'external_rating': '',
-            },
-            'appident3': {
-                'ident': 'appident3',
-                'name': 'App3',
-                'platforms': ['proton'],
-                'description'
-                'categories': ['categoryid1', 'categoryid2'],
-                'images': {
-                    'banner': 'https://www.stuttgarter-nachrichten.de/media.media.5d6dcbb5-e13b-4d81-8b5b-e74d45f3d237.original1024.jpg',
-                    'thumb': '',
-                    'zoom': '',
-                    'screenshots': [],
-                },
-                'tags': ['tag1', 'tag2'],
-                'publisher': 'somePublisher',
-                'external_rating': '',
-            },
-        }
-        pass
+        self.set_categories()
+        self.set_teaser()
+        self.set_featured()
 
     def get_data(self):
         data = {
@@ -129,3 +19,15 @@ class Homepage:
         }
 
         return data
+
+    def set_teaser(self):
+        teaser_apps = App.objects.filter(teaser=True).values()
+        self.teaser = list(teaser_apps)
+
+    def set_featured(self):
+        featured_apps = App.objects.filter(featured=True).values()
+        self.featured = list(featured_apps)
+
+    def set_categories(self):
+        categories = Category.objects.values()
+        self.categories = list(categories)
