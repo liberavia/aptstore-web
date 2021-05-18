@@ -6,7 +6,7 @@ class Category(models.Model):
     description = models.TextField(null=True, blank=True)
 
     class Meta:
-        verbose_name = "Categorie"
+        verbose_name = "Category"
 
     def __str__(self):
         return self.name

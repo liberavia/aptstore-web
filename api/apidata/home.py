@@ -1,6 +1,5 @@
-import json
+from app.models import App, Category
 
-from app.models import App
 
 class Homepage:
     categories = None
@@ -30,18 +29,5 @@ class Homepage:
         self.featured = list(featured_apps)
 
     def set_categories(self):
-        """ Create dummy data """
-        self.categories = {
-            'categoryid1': {
-                'name': 'category1',
-                'image_banner': '',
-                'image_thumb': '',
-                'image_zoom': '',
-            },
-            'categoryid2': {
-                'name': 'category2',
-                'image_banner': '',
-                'image_thumb': '',
-                'image_zoom': '',
-            },
-        }
+        categories = Category.objects.values()
+        self.categories = list(categories)
