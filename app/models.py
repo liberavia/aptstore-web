@@ -49,6 +49,11 @@ class App(models.Model):
     ident = models.CharField(db_index=True, max_length=50)
     ident_rating = models.CharField(max_length=100)
     name = models.CharField(db_index=True, max_length=100)
+    description_short = models.CharField(null=True, blank=True, max_length=200)
+    description_long = models.TextField(null=True, blank=True)
+    price = models.IntegerField(default=0)
+    price_initial = models.IntegerField(default=0)
+    currency = models.CharField(default='EUR', max_length=3)
     image_banner = models.CharField(null=True, blank=True, max_length=200)
     image_thumb = models.CharField(null=True, blank=True, max_length=200)
     image_details = models.CharField(null=True, blank=True, max_length=200)
@@ -84,14 +89,16 @@ class Screenshot(models.Model):
 class AppRegional(models.Model):
     app = models.ForeignKey(App, on_delete=models.CASCADE, null=True)
     region = models.CharField(db_index=True, max_length=7)
+    name = models.CharField(blank=True, db_index=True, max_length=100)
     description_short = models.CharField(null=True, blank=True, max_length=200)
     description_long = models.TextField(null=True, blank=True)
     price = models.IntegerField()
     price_initial = models.IntegerField(default=0)
-    currency = models.CharField(max_length=3)
+    currency = models.CharField(default='EUR', max_length=3)
 
     class Meta:
         verbose_name = "App Regional"
 
     def __str__(self):
-        return self.region
+        caption = "{a} {r}".format(a=self.app.name, r=self.region)
+        return caption
