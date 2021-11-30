@@ -1,4 +1,4 @@
-from app.models import App, AppRegional, CategoryRegional
+from app.models import App, AppRegional, CategoryRegional, Screenshot
 
 
 class DetailsPage:
@@ -28,6 +28,7 @@ class DetailsPage:
         app_data['platforms'] = platforms_list
         app_data['categories'] = categories_list
         app_data['tags'] = tags_list
+        app_data['screenshots'] = self.get_screenshots(app)
 
         app_i18n = self.get_app_i18n(app)
         if app_i18n:
@@ -69,3 +70,9 @@ class DetailsPage:
 
         return app_i18n
 
+    def get_screenshots(self, app):
+        app_entity = app.first()
+        app_screenshots = Screenshot.objects.filter(app=app_entity.pk).values()
+        app_screenshot_images = [app_screenshot for app_screenshot in app_screenshots]
+
+        return app_screenshot_images
