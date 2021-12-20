@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from .apidata.home import Homepage
 from .apidata.details import DetailsPage
+from .apidata.teaser import Teaser
 
 
 def home(request):
@@ -14,6 +15,18 @@ def home(request):
 
     hp = Homepage(get_region(request))
     data = hp.get_data()
+
+    return HttpResponse(json.dumps(data))
+
+
+def teaser(request):
+    """
+    Teaser apps view
+    :param request:
+    :return:
+    """
+    tp = Teaser(get_region(request))
+    data = tp.get_data()
 
     return HttpResponse(json.dumps(data))
 
