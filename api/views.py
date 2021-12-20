@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .apidata.home import Homepage
 from .apidata.details import DetailsPage
 from .apidata.teaser import Teaser
+from .apidata.featured import Featured
 
 
 def home(request):
@@ -27,6 +28,17 @@ def teaser(request):
     """
     tp = Teaser(get_region(request))
     data = tp.get_data()
+
+    return HttpResponse(json.dumps(data))
+
+def featured(request):
+    """
+    Featured apps view
+    :param request:
+    :return:
+    """
+    fp = Featured(get_region(request))
+    data = fp.get_data()
 
     return HttpResponse(json.dumps(data))
 
