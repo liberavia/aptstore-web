@@ -1,36 +1,22 @@
-from app.models import App, Category, AppRegional
+from app.models import App, AppRegional
 
 
-class Homepage:
+class Teaser:
     region = None
-    categories = None
     teaser = None
-    featured = None
 
     def __init__(self, region):
         self.region = region
-        self.set_categories()
         self.set_teaser()
-        self.set_featured()
 
     def get_data(self):
-        data = {
-            'categories': self.categories,
-            'teaser': self.teaser,
-            'featured': self.featured,
-        }
-
-        return data
+        return self.teaser
 
     def set_teaser(self):
-        teaser_apps = App.objects.filter(teaser=True).values()
-        self.teaser = list(teaser_apps)
-
-    def set_featured(self):
-        featured_apps = App.objects.filter(featured=True).all()
-        parsed_featured_apps = []
-        for featured_app in featured_apps:
-            app = App.objects.filter(pk=featured_app.pk)
+        teaser_apps = App.objects.filter(teaser=True).all()
+        parsed_teaser_apps = []
+        for teaser_app in teaser_apps:
+            app = App.objects.filter(pk=teaser_app.pk)
             app_data = app.values().first()
             app_i18n = self.get_app_i18n(app)
             if app_i18n:
@@ -39,13 +25,9 @@ class Homepage:
                 app_data['description_long'] = app_i18n['long']
                 app_data['price'] = app_i18n['price']
                 app_data['price_initial'] = app_i18n['price_initial']
-            parsed_featured_apps.append(app_data)
+            parsed_teaser_apps.append(app_data)
 
-        self.featured = parsed_featured_apps
-
-    def set_categories(self):
-        categories = Category.objects.values()
-        self.categories = list(categories)
+        self.teaser = parsed_teaser_apps
 
     def get_app_i18n(self, app):
         app_i18n = None

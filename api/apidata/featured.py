@@ -1,30 +1,16 @@
-from app.models import App, Category, AppRegional
+from app.models import App, AppRegional
 
 
-class Homepage:
+class Featured:
     region = None
-    categories = None
-    teaser = None
     featured = None
 
     def __init__(self, region):
         self.region = region
-        self.set_categories()
-        self.set_teaser()
         self.set_featured()
 
     def get_data(self):
-        data = {
-            'categories': self.categories,
-            'teaser': self.teaser,
-            'featured': self.featured,
-        }
-
-        return data
-
-    def set_teaser(self):
-        teaser_apps = App.objects.filter(teaser=True).values()
-        self.teaser = list(teaser_apps)
+        return self.featured
 
     def set_featured(self):
         featured_apps = App.objects.filter(featured=True).all()
@@ -42,10 +28,6 @@ class Homepage:
             parsed_featured_apps.append(app_data)
 
         self.featured = parsed_featured_apps
-
-    def set_categories(self):
-        categories = Category.objects.values()
-        self.categories = list(categories)
 
     def get_app_i18n(self, app):
         app_i18n = None
